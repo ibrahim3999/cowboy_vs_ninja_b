@@ -6,14 +6,16 @@ using namespace std;
 namespace ariel {
 
     class Character {
-        
-    private:
+
+    protected: 
         Point location;
+
+    private:
         string name;
         int health;
         
     public:
-        Character();
+        //Character();
         Character(const Character& other); // Copy constructor
         Character(string name, const Point& location);
         virtual ~Character();
@@ -23,16 +25,17 @@ namespace ariel {
 
         // Setter 
         void setHealth(int health);
-
+        void setLocation(Point& location);
         // Getter
         Point getLocation();
         string getName();
         int getHealth();
 
+        string toString();
         bool isAlive();                    // Return true if Character health > 0
-        double distance(const Point& point1);  // Distance between 2 characters
+        double distance(const Point& other);  // Distance between 2 characters
         virtual void hit(int num);         // Reduce the health of the character 
-        virtual string print();            // Print: name, health, location, isAlive() 
+        virtual void print();            // Print: name, health, location, isAlive() 
     };
 
 }

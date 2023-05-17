@@ -97,7 +97,7 @@ TEST_SUITE("Point class tests") {
         CHECK_THROWS_AS(Point::moveTowards(p1, p2, -1),std::invalid_argument);
     }
 }
-/****
+
 TEST_SUITE("Classes initialization tests and Team modification( add(),stillAlive() )") {
 
     TEST_CASE("Cowboy initialization") {
@@ -109,7 +109,7 @@ TEST_SUITE("Classes initialization tests and Team modification( add(),stillAlive
 
         CHECK(cowboy.isAlive());
     }
-
+/*
     TEST_CASE("YoungNinja initialization") {
         YoungNinja ninja{"Bob", Point{2, 3}};
         CHECK_EQ(ninja.getName(), "Bob");
@@ -202,10 +202,10 @@ TEST_SUITE("Classes initialization tests and Team modification( add(),stillAlive
         CHECK_THROWS_AS(team3.add(teammate1),std::runtime_error);
         CHECK_THROWS_AS(team2.add(teammate2),std::runtime_error);
         CHECK_THROWS_AS(team3.add(teammate2),std::runtime_error);
-    }
+    }*/
 }
 
-
+/****
 TEST_SUITE("Battle related methods") {
 
     TEST_CASE("Cowboy shoot() and reload() methods") {

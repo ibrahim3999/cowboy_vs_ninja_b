@@ -3,29 +3,32 @@
 
 namespace ariel{
 
-    Cowboy::Cowboy(string name , const Point& location):Character(name,location),amountOfBalls(15){
-
+    Cowboy::Cowboy(string name , const Point& location):Character(name,location),amountOfBalls(6){
+        setHealth(110);
     }
 
   //  Cowboy::~Cowboy(){}
 
     void Cowboy::shoot(Character* enemy){
-
+        while(isAlive() && hasboolets()){
+          enemy->hit(10);
+          amountOfBalls--;
+        }
     }
 
-    bool Cowboy::hasBullets(){
-        return true;
+    bool Cowboy::hasboolets(){
+        
+        return amountOfBalls > 0;
     }
     
     void Cowboy::reload(){
-
+        amountOfBalls = 6;
     }
 
     
     int Cowboy::getAmountOfBalls(){
         return 0;
     }
-    
-
+   
 
 }

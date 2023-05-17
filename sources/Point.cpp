@@ -13,13 +13,13 @@ namespace ariel{
 
     Point::Point(const Point& other) : x_coord(other.x_coord), y_coord(other.y_coord) {}
 
-    double Point::distance(const Point& other) {
+    double Point::distance( const Point& other){
         double xDiff = other.x_coord - this->x_coord;
         double yDiff = other.y_coord - this->y_coord;
         return sqrt(xDiff * xDiff + yDiff * yDiff);
     }
 
-    Point Point::moveTowards(Point& source,  Point& destination, double distance) {
+    Point Point::moveTowards(  Point& source,   const Point& destination, double distance) {
 
         if(distance < 0){
             std::__throw_invalid_argument("distance can not be negative ");

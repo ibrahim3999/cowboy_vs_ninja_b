@@ -12,7 +12,7 @@ namespace ariel{
             Cowboy(string name ,const Point& location);
           //  ~Cowboy();
             void shoot(Character * enemy);// reduce 10 health from other character ...
-            bool hasBullets();// reutrn true if the cowboy have bullets in the weapon
+            bool hasboolets();// reutrn true if the cowboy have bullets in the weapon
             void reload(); // reload balls to the weapon
 
             //getter 
