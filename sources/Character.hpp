@@ -9,10 +9,10 @@ namespace ariel {
 
     protected: 
         Point location;
+        int health;
 
     private:
         string name;
-        int health;
         
     public:
         //Character();
@@ -36,6 +36,7 @@ namespace ariel {
         double distance(const Point& other);  // Distance between 2 characters
         virtual void hit(int num);         // Reduce the health of the character 
         virtual void print();            // Print: name, health, location, isAlive() 
+        virtual int getAbility() const = 0;
     };
 
 }

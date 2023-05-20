@@ -11,14 +11,14 @@ namespace ariel{
 
 
     bool Character::isAlive(){
-        return this->health > 0;
+        return health > 0;
     }
     double Character::distance (const Point& other){
         return this->location.distance(other);
     }
    
     //setter
-    void Character::setLocation( Point& location){
+    void setLocation( Point& location){
         location = Point(location);
     
     }
@@ -39,7 +39,14 @@ namespace ariel{
         return health;
     }
     void Character::hit(int num) {
+        if(num < 0){
+            throw invalid_argument(" Damage cant be -num");
+        }
         health-= num;
+        if(health<0)health=0;
+        cout << health << endl;
+        
+        
     }
 
     void Character::print() {

@@ -15,6 +15,8 @@ namespace ariel{
             //getter and setter
             void setSpeed(int);
             int getSpeed();
+            void print()override;
+            int getAbility() const override; 
 
         private:
             int speed;

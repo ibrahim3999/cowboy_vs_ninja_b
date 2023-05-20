@@ -14,7 +14,8 @@ namespace ariel{
             void shoot(Character * enemy);// reduce 10 health from other character ...
             bool hasboolets();// reutrn true if the cowboy have bullets in the weapon
             void reload(); // reload balls to the weapon
-
+            void print() override ;
+            int getAbility() const override; 
             //getter 
 
             int getAmountOfBalls();// amount balls

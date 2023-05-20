@@ -7,15 +7,19 @@ namespace ariel{
 
     void Ninja::move(Character* enemy){
         Point newLocation = Point::moveTowards(location,enemy->getLocation(),speed);
-        this->setLocation(newLocation);
+        location=newLocation;
        
     }
 
     void Ninja::slash(Character* enemy){
-        while(isAlive() && distance(enemy->getLocation()) <= 1 ){
-            enemy->hit(40);
+        if(isAlive() ){
+            if(distance(enemy->getLocation()) <= 1 ){
+                enemy->hit(40);
+            }
         }
-
+    }
+    int Ninja::getAbility() const{
+        return 40;
     }
 
     void Ninja::setSpeed(int speed){
@@ -25,5 +29,11 @@ namespace ariel{
         return speed;
 
     }
+
+void Ninja::print() {
+    cout << "Ninja:";
+    Character::print();  // Call the base class print function
+    cout << "" << endl;
+}
 }
 

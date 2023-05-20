@@ -3,9 +3,6 @@
 using namespace std;
 namespace ariel{
 
-   // Default constructor
-    Team::Team() : teamSize(0), teamMaxSize(10) {}
-
    // Destructor
    
    Team::~Team() {
@@ -14,26 +11,35 @@ namespace ariel{
       }
       members.clear();
    }
+   
+   // Constructor with an initial character
 
-
-    // Constructor with an initial character
-
-   Team::Team(Character* leader):teamMaxSize(10),teamSize(0){
-      add(leader);
+   Team::Team(Character* captain):teamMaxSize(10),teamSize(0){
+      add(captain);
    }
+
+
     // Getter for the team
    std::vector<Character*> & Team::getTeam() {
         return members;
    }
+   Character* Team::getCaptain(){
+      return captain;
+
+   }
+   void Team::setCaptain(Character * Captain){
+
+   }
 
    // Add a character to the team
    void Team::add(Character* character) {
+      if(teamSize == 10){
+         throw runtime_error("ERORR YOUR YOUHAVE MAX CHARACTER");
+      }
+
       if (teamSize < teamMaxSize) {
          members.push_back(character);
          teamSize++;
-      }
-      else {
-         std::cout << "Team is already at maximum capacity." << std::endl;
       }
    }
   // Remove a character from the team
@@ -46,7 +52,16 @@ namespace ariel{
          }
       }
    }
- void Team::attack(Team* enemyTeam) {
+
+   void Team::print() {
+      for (Character* character : members) {
+            character->print();
+      }
+   }
+
+
+   void Team::attack(Team* enemyTeam) {
+
     Character* attackingLeader = nullptr;
     Character* closestAliveEnemy = nullptr;
 
@@ -106,44 +121,36 @@ namespace ariel{
                     if (attacker->distance(closestAliveEnemy->getLocation()) <= 1) {
                         // Ninja attacks
                         ninja->slash(closestAliveEnemy);
-                    } else {
+                     } else {
                         // Ninja moves towards the enemy
                         ninja->move(closestAliveEnemy);
-                    }
+                     }
                 } else {
                     std::cout << "Attacker is not a Ninja. Cannot perform attack action." << std::endl;
                 }
             }
+            
+
         }
     }
 
     // Check if the closest enemy is defeated
-    if (!closestAliveEnemy->isAlive()) {
-        std::cout << "The closest enemy has been defeated." << std::endl;
-    } else {
-        std::cout << "The attack has been executed." << std::endl;
-    }
-}
-
-
-   int Team::stillAlive() {
-      int count = 0;
-      // counter aliveTeam
-      for (Character* character : members) {
-         if (character->isAlive()) {
-            count++;
-         }
+      if (!closestAliveEnemy->isAlive()) {
+         std::cout << "The closest enemy has been defeated." << std::endl;
+      } else {
+         std::cout << "The attack has been executed." << std::endl;
       }
-        return count;
    }
-   void Team::print() {
+  
+    // Check if any team members are still alive
+    int Team::stillAlive() {
+        int aliveCount = 0;
         for (Character* character : members) {
-            character->print();
-         }
+            if (character->isAlive()) {
+                aliveCount++;
+            }
+        }
+        return aliveCount;
     }
-   int Team::getTeamSize(){
-      return teamSize;
-   }
 
-
-}
+} // namespace ariel

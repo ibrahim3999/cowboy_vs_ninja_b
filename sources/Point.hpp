@@ -23,9 +23,8 @@ namespace ariel {
         void print() ;//printf Point 
 
         bool operator==(const Point& other) const ;
-        Point& operator=(const Point& other);
        
-
+         Point& operator=(const Point& other);
         //getter and setter
         double getX_coord();
         double getY_coord();

@@ -1,10 +1,3 @@
-/**
- * Demo file for the exercise on binary tree
- *
- * @author Evgeny Hershkovitch Neiterman
- * @since 2023-03
- */
-
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -42,6 +35,7 @@ int main() {
         team_B.attack(&team_A);
         team_A.print();
         team_B.print();
+        
      }
 
      if (team_A.stillAlive() > 0) cout << "winner is team_A" << endl;
