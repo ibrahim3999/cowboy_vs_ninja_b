@@ -27,7 +27,7 @@ namespace ariel{
 
     
     int Cowboy::getAmountOfBalls(){
-        return 0;
+        return amountOfBalls;
     }
    
 

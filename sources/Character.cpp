@@ -18,8 +18,9 @@ namespace ariel{
     }
    
     //setter
-    void setLocation(Point& location){
-        location =Point(location);
+    void Character::setLocation( Point& location){
+        location = Point(location);
+    
     }
     void Character::setHealth(int health){
 

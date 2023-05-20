@@ -23,6 +23,7 @@ namespace ariel {
         void print() ;//printf Point 
 
         bool operator==(const Point& other) const ;
+        Point& operator=(const Point& other);
        
 
         //getter and setter

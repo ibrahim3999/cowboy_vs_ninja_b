@@ -16,8 +16,8 @@ namespace ariel{
         public:
             Team();
             Team (Character*);
-          //  ~Team();
-            vector<Character> getTeam();//getter
+            ~Team();
+            vector<Character*> & getTeam();//getter
             void add(Character*);//add characterin the team
             void remove(Character*);//add characterin the team
             void attack(Team*);//attack other team 
@@ -26,7 +26,7 @@ namespace ariel{
             int getTeamSize();
 
         private:
-            vector<Character> members;
+            vector<Character*> members;
             int teamSize;
             int teamMaxSize;
 

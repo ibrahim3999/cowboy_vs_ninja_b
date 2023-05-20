@@ -25,7 +25,7 @@ namespace ariel {
 
         // Setter 
         void setHealth(int health);
-        void setLocation(Point& location);
+        void setLocation( Point&);
         // Getter
         Point getLocation();
         string getName();

@@ -43,6 +43,14 @@ namespace ariel{
             return x_coord == other.x_coord && y_coord == other.y_coord;
         
     }
+    Point& Point::operator=(const Point& other) {
+    if (this != &other) {
+        // Copy the member variables from the other Point object
+        x_coord = other.x_coord;
+        y_coord = other.y_coord;
+    }
+    return *this;
+    }
     double  Point::getX_coord(){
         return x_coord;
     }
