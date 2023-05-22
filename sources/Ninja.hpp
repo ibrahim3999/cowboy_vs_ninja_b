@@ -4,6 +4,8 @@
 namespace ariel{
 
     class Ninja : public Character{
+        protected:
+            bool isAttack=false;
 
         public:
         
@@ -17,9 +19,11 @@ namespace ariel{
             int getSpeed();
             void print()override;
             int getAbility() const override; 
+            void attack(Character* enemy)override;
 
         private:
             int speed;
+            
 
         
     };
