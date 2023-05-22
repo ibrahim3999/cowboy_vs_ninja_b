@@ -16,6 +16,8 @@ namespace ariel{
             vector<Character*> members;
             bool isMember=false;
             Character *captain;
+            int teamSize;
+            int teamMaxSize;
             
 
             
@@ -23,7 +25,7 @@ namespace ariel{
             Team (Character*);
             ~Team();
             vector<Character*>  getTeam();//getter
-            void add(Character*);//add characterin the team
+            virtual void add(Character*);//add characterin the team
             void remove(Character*);//add characterin the team
             virtual void attack(Team*);//attack other team 
             int stillAlive();//return number of charatersis alive in the team
@@ -34,20 +36,14 @@ namespace ariel{
             void setCaptain(Character *);
             Character * getCaptain();
             void sortCowboysFirst(vector<Character*>& characters) ;
-          
-
-            
-            
 
         private:
             
             int attackRange;
-            int teamSize;
-            int teamMaxSize;
+            
 
             
 
         static std::vector<Team*> teams;
     };
 }
-
