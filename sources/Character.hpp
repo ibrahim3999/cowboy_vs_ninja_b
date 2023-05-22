@@ -13,6 +13,8 @@ namespace ariel {
 
     private:
         string name;
+        bool joinedTeam;
+
         
     public:
         //Character();
@@ -30,6 +32,9 @@ namespace ariel {
         Point getLocation();
         string getName();
         int getHealth();
+        bool getJoinedTeam();
+        void setJoinedteam();
+        double distance (Character* other);
 
         string toString();
         bool isAlive();                    // Return true if Character health > 0
@@ -37,6 +42,7 @@ namespace ariel {
         virtual void hit(int num);         // Reduce the health of the character 
         virtual void print();            // Print: name, health, location, isAlive() 
         virtual int getAbility() const = 0;
+        virtual void attack(Character*)=0;
     };
 
 }
