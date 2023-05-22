@@ -8,22 +8,24 @@ namespace ariel{
     }
 
   //  Cowboy::~Cowboy(){}
-
-    void Cowboy::shoot(Character* enemy){
-        if(enemy == NULL){
-            throw runtime_error("NULL POINTER");
-        }
-        else if(!this->isAlive()){
-            throw runtime_error("COWBOY IS DEAD");
-        }
-        else if(isAlive() && hasboolets()){
-          enemy->hit(10);
-          amountOfBalls--;
-        }
-        else if(!hasboolets()){
-            reload();
-        }
+void Cowboy::shoot(Character* enemy) {
+    if (enemy == nullptr) {
+        throw std::invalid_argument("NULL POINTER");
+    } 
+    if (!this->isAlive()) {
+        throw std::runtime_error("Cowboy is dead");
+    } 
+    if(!enemy->isAlive()){
+        throw std::runtime_error("enemy is dead(Cowboy)");
+    }  
+    if (this == enemy) {
+        throw std::runtime_error("Can't shoot yourself");
     }
+    if (hasboolets() && this->isAlive()) {
+        enemy->hit(10);
+        amountOfBalls--;
+    }
+}
 
     bool Cowboy::hasboolets(){
         return amountOfBalls > 0;
@@ -31,7 +33,9 @@ namespace ariel{
     
     void Cowboy::reload(){
         if(isAlive()){
-            amountOfBalls = 6;
+            amountOfBalls=6;
+        }else{
+            throw runtime_error("the cowboy is dead cant reload");
         }
         
     }
@@ -48,6 +52,10 @@ namespace ariel{
         cout << "Cowboy:";
         Character::print();  // Call the base class print function
         cout << "Bullets: " << amountOfBalls << endl;
+    }
+
+    void Cowboy::attack(Character* enemy){
+        this->shoot(enemy);
     }
 }
    
