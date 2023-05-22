@@ -16,6 +16,7 @@ namespace ariel{
             void reload(); // reload balls to the weapon
             void print() override ;
             int getAbility() const override; 
+            void attack(Character* enemy)override;
             //getter 
 
             int getAmountOfBalls();// amount balls
