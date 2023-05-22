@@ -7,6 +7,9 @@ namespace ariel{
   Team2::Team2(Character* leader): Team(leader){
   }
   void Team2::attack(Team* enemyTeam) {
+    if(enemyTeam == nullptr){
+      throw invalid_argument("null ptr enemy Team");
+    }
     Character* attackingLeader = nullptr;
     Character* closestAliveEnemy = nullptr;
 
