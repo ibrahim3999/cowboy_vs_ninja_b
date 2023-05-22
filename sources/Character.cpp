@@ -5,7 +5,7 @@ namespace ariel{
 
     //Character::Character(){}
 
-    Character::Character(string name , const Point &location):name(name),location(location){
+    Character::Character(string name , const Point &location):name(name),location(location),joinedTeam(false){
     }
     Character::~Character(){}
 
@@ -16,6 +16,9 @@ namespace ariel{
     double Character::distance (const Point& other){
         return this->location.distance(other);
     }
+    double Character::distance (Character* other){
+        return this->location.distance(other->getLocation());
+    }
    
     //setter
     void setLocation( Point& location){
@@ -25,6 +28,12 @@ namespace ariel{
     void Character::setHealth(int health){
 
         this->health = health;
+    }
+    bool Character::getJoinedTeam(){
+        return joinedTeam;
+    }
+    void Character::setJoinedteam(){
+            joinedTeam = !joinedTeam;
     }
     //getter
     Point Character::getLocation(){
@@ -44,9 +53,7 @@ namespace ariel{
         }
         health-= num;
         if(health<0)health=0;
-        cout << health << endl;
-        
-        
+ 
     }
 
     void Character::print() {
