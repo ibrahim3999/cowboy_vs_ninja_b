@@ -12,9 +12,24 @@ namespace ariel{
     }
 
     void Ninja::slash(Character* enemy){
-        if(isAlive() ){
-            if(distance(enemy->getLocation()) <= 1 ){
+        if(enemy == nullptr){
+            throw runtime_error("null Pointer");
+        }
+        else if(!enemy->isAlive()){
+            throw runtime_error("enemy dead");
+        }
+        else if(this== enemy){
+            throw runtime_error(" cant slash yourself ");
+        }else if(!this->isAlive()){
+            throw runtime_error("Ninja dead");
+        }
+        else if(isAlive() ){
+            if(distance(enemy->getLocation()) < 1 ){
                 enemy->hit(40);
+                isAttack = true;
+            }
+            else if(distance(enemy->getLocation())>=1){
+                isAttack=false;
             }
         }
     }
@@ -23,17 +38,27 @@ namespace ariel{
     }
 
     void Ninja::setSpeed(int speed){
-    this->speed = speed ;
+        this->speed = speed ;
     }
     int Ninja::getSpeed(){
         return speed;
 
     }
 
-void Ninja::print() {
-    cout << "Ninja:";
-    Character::print();  // Call the base class print function
-    cout << "" << endl;
-}
+    void Ninja::print() {
+        cout << "Ninja:";
+        Character::print();  // Call the base class print function
+        cout << "" << endl;
+    }
+    void Ninja::attack(Character* enemy){
+        if(this->distance(enemy)>=1){
+            this->move(enemy);
+        }else{
+             this->slash(enemy);
+        }
+  
+    }
+
+
 }
 
