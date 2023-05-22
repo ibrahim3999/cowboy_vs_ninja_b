@@ -56,8 +56,8 @@ namespace ariel{
  
     }
 
-    void Character::print() {
-       cout << toString() << endl;
+    string Character::print() {
+       return toString() ;
     }
   
     string Character::toString() {

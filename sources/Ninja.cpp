@@ -44,12 +44,13 @@ namespace ariel{
         return speed;
 
     }
+string Ninja::print() {
+    string output = "Ninja: ";
+    output += Character::print(); 
+    output += "\n";
+    return output;
+}
 
-    void Ninja::print() {
-        cout << "Ninja:";
-        Character::print();  // Call the base class print function
-        cout << "" << endl;
-    }
     void Ninja::attack(Character* enemy){
         if(this->distance(enemy)>=1){
             this->move(enemy);

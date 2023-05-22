@@ -40,7 +40,7 @@ namespace ariel {
         bool isAlive();                    // Return true if Character health > 0
         double distance(const Point& other);  // Distance between 2 characters
         virtual void hit(int num);         // Reduce the health of the character 
-        virtual void print();            // Print: name, health, location, isAlive() 
+        virtual string print();            // Print: name, health, location, isAlive() 
         virtual int getAbility() const = 0;
         virtual void attack(Character*)=0;
     };

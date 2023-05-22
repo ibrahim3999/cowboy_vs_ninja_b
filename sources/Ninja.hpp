@@ -17,7 +17,7 @@ namespace ariel{
             //getter and setter
             void setSpeed(int);
             int getSpeed();
-            void print()override;
+            string print()override;
             int getAbility() const override; 
             void attack(Character* enemy)override;
 

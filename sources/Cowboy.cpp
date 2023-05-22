@@ -8,7 +8,7 @@ namespace ariel{
     }
 
   //  Cowboy::~Cowboy(){}
-void Cowboy::shoot(Character* enemy) {
+    void Cowboy::shoot(Character* enemy) {
     if (enemy == nullptr) {
         throw std::invalid_argument("NULL POINTER");
     } 
@@ -48,11 +48,13 @@ void Cowboy::shoot(Character* enemy) {
         return amountOfBalls;
     }
 
-    void Cowboy::print() {
-        cout << "Cowboy:";
-        Character::print();  // Call the base class print function
-        cout << "Bullets: " << amountOfBalls << endl;
-    }
+  string Cowboy::print() {
+    string output = "Cowboy: ";
+    output += Character::print();  // Call the base class print function
+    output += "Bullets: " + to_string(amountOfBalls) + "\n";
+    return output;
+}
+
 
     void Cowboy::attack(Character* enemy){
         this->shoot(enemy);
