@@ -85,113 +85,125 @@ namespace ariel{
         }
     }
 
-void Team::attack(Team* enemyTeam) {
-    if (enemyTeam == nullptr) {
-        throw std::invalid_argument("Null pointer to enemy team");
-    }else if(this==enemyTeam){
-        throw runtime_error("cant attack yourself ");
-    }
-    else if (stillAlive()==0) {
-        throw std::runtime_error("The team is dead.");
-    }
-    else if (enemyTeam->stillAlive() == 0) {
-        throw std::runtime_error("The attacking team has been defeated.");
-    }
-    Character* closestEnemy = nullptr;
+    void Team::attack(Team* enemyTeam) {
 
-    if(!this->captain->isAlive()){
-
-        // Find the closest alive teammate and appoint them as the new captain
-        double minTeammateDistance = std::numeric_limits<double>::max();
-        Character* closestTeammate = nullptr;
-        for (Character* teammate : members) {
-            if (teammate != captain && teammate->isAlive()) {
-                double distance = captain->distance(teammate->getLocation());
-                if (distance < minTeammateDistance) {
-                    minTeammateDistance = distance;
-                    closestTeammate = teammate;
-                }
-            }
+        if (enemyTeam == nullptr) {
+            throw std::invalid_argument("Null pointer to enemy team");
+        }else if(this==enemyTeam){
+            throw runtime_error("cant attack yourself ");
         }
-        if (closestTeammate != nullptr) {
-            enemyTeam->setCaptain(closestTeammate);
-        }else{
-            return;
+        else if (stillAlive()==0) {
+            throw std::runtime_error("The team is dead.");
         }
-    }
-
-    if(closestEnemy==nullptr || !closestEnemy->isAlive())
-    {
-        // Find the closest alive enemy to the attacking captian
-        double minDistance = std::numeric_limits<double>::max();
-        for (Character* enemy : enemyTeam->getTeam()) {
-            if (enemy->isAlive()) {
-                double distance = this->captain->distance(enemy->getLocation());
-                if (distance < minDistance) {
-                    minDistance = distance;
-                    closestEnemy = enemy;
-                }
-            }
+        else if (enemyTeam->stillAlive() == 0) {
+            throw std::runtime_error("The attacking team has been defeated.");
         }
-    }
-    // If there are no alive enemies or no alive members in the attacking team, the attack ends
-    if (closestEnemy == nullptr ) {
-       //throw std::invalid_argument("Null pointer to enemy team");
-       return;
-    }
-     
+        
+        Character* closestEnemy = nullptr;
 
-    // Attack the closest alive enemy
-    for (Character* attacker : members) {
-        if (attacker->isAlive() && closestEnemy->isAlive() ){
+        if(!this->captain->isAlive()){
 
-            if ( Cowboy* cowboy = dynamic_cast<Cowboy*>(attacker)) {
-                if(closestEnemy->isAlive()){
-                    if (cowboy->hasboolets()&& closestEnemy->isAlive()) {
-                        // Shoot the enemy
-                        cowboy->shoot(closestEnemy);
-                    } else if(!cowboy->hasboolets()){
-                        // Reload weapon
-                        cowboy->reload();
+            // Find the closest alive teammate and appoint them as the new captain
+            double minTeammateDistance = std::numeric_limits<double>::max();
+            Character* closestTeammate = nullptr;
+            for (Character* teammate : members) {
+                if (teammate != captain && teammate->isAlive()) {
+                    double distance = captain->distance(teammate->getLocation());
+                    if (distance < minTeammateDistance) {
+                        minTeammateDistance = distance;
+                        closestTeammate = teammate;
                     }
                 }
             }
-        else if( Ninja *ninja = dynamic_cast<Ninja*>(attacker)){
-            if(closestEnemy->isAlive()){
-                if(ninja->distance(closestEnemy->getLocation())<1){
-                    ninja->slash(closestEnemy);
-                }else{
-                    ninja->move(closestEnemy);
-                }
-            }
-        } 
-     } 
-    }
-    if(!closestEnemy->isAlive()){
-         // Find the closest alive enemy to the attacking captian
-        double minDistance = std::numeric_limits<double>::max();
-        for (Character* enemy : enemyTeam->getTeam()) {
-            if (enemy->isAlive()) {
-                double distance = this->captain->distance(closestEnemy->getLocation());
-                if (distance < minDistance) {
-                    minDistance = distance;
-                    closestEnemy = enemy;
-                }
+            if (closestTeammate != nullptr) {
+                enemyTeam->setCaptain(closestTeammate);
+            }else{
+                return;
             }
         }
-        if(closestEnemy == nullptr){
+        
+        if(closestEnemy==nullptr || !closestEnemy->isAlive())
+        {
+            // Find the closest alive enemy to the attacking captian
+            double minDistance = std::numeric_limits<double>::max();
+            for (Character* enemy : enemyTeam->getTeam()) {
+                if (enemy->isAlive()) {
+                    double distance = this->captain->distance(enemy->getLocation());
+                    if (distance < minDistance) {
+                        minDistance = distance;
+                        closestEnemy = enemy;
+                    }
+                }
+            }
+
+        }
+        // If there are no alive enemies or no alive members in the attacking team, the attack ends
+        if (closestEnemy == nullptr ) {
+        //throw std::invalid_argument("Null pointer to enemy team");
         return;
         }
-    
-    }
-    if (enemyTeam->stillAlive() == 0) {
-        throw std::runtime_error("The attacking team has been defeated.");
-    }
 
-}
+        // Attack the closest alive enemy
+        for (Character* attacker : members) {
+            if (attacker->isAlive() && closestEnemy->isAlive() ){
+
+                if ( Cowboy* cowboy = dynamic_cast<Cowboy*>(attacker)) {
+                    
+                    if (cowboy->hasboolets()) {
+                            // Shoot the enemy
+                            cowboy->shoot(closestEnemy);
+                    } else if( !cowboy->hasboolets() ){
+                        // Reload weapon
+                        cowboy->reload();
+                    }    
+                }
+                if( Ninja *ninja = dynamic_cast<Ninja*>(attacker)){
+                
+                    if(ninja->distance(closestEnemy->getLocation())<1 && closestEnemy->isAlive()){
+                        ninja->slash(closestEnemy);
+                        }else{
+                            ninja->move(closestEnemy);
+                        }
+                } 
+                
+            }
+            if(closestEnemy!=nullptr && !enemyTeam->getCaptain()->isAlive()){
+                Character* closest = nullptr;
+                double minDistance = std::numeric_limits<double>::max();
+                for (Character* enemy : enemyTeam->getTeam()) {
+                    if ( closestEnemy != enemy && enemy->isAlive()) {
+                        double distance = closestEnemy->distance(enemy->getLocation());
+                        if (distance < minDistance) {
+                            minDistance = distance;
+                            closest = enemy;
+
+                            enemyTeam->setCaptain(closest); 
+                        }
+                    }
+                }
+            }
+            if((!this->getCaptain()->isAlive())){
+            
+                Character* closest = nullptr;
+                double minDistance = std::numeric_limits<double>::max();
+                for (Character* member : members){
+                    if(member!=captain){
+                        double distance = captain->distance(member);
+                        if (distance < minDistance) {
+                            minDistance = distance;
+                            closest = member;
+                            this->setCaptain(closest); 
+                        }
+                    }
+                }
+            }
+            
+        }
+    }
+     
 
     // Check if any team members are still alive
-    int Team::stillAlive() {
+int Team::stillAlive() {
       int aliveCount = 0;
       for (Character* character : members) {
          if (character->isAlive()) {
