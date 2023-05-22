@@ -8,7 +8,7 @@ namespace ariel{
 
         public:
             Team2(Character*);
-            void attack(Team* enemyTeam)override;
+            void add(Character*)override;
 
 
     };
