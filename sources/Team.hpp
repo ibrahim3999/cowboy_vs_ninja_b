@@ -14,13 +14,15 @@ namespace ariel{
     class Team{
         protected:
             vector<Character*> members;
-            Character* captain;
-            vector<Character*> captains;
+            bool isMember=false;
+            Character *captain;
+            
+
             
         public:
             Team (Character*);
             ~Team();
-            vector<Character*> & getTeam();//getter
+            vector<Character*>  getTeam();//getter
             void add(Character*);//add characterin the team
             void remove(Character*);//add characterin the team
             virtual void attack(Team*);//attack other team 
@@ -28,18 +30,24 @@ namespace ariel{
             void print();
             int getTeamSize();
             // Check if the given character is already assigned as a captain in another team
-            Character* getCaptain();
+            bool getMember();
             void setCaptain(Character *);
+            Character * getCaptain();
+            void sortCowboysFirst(vector<Character*>& characters) ;
+          
+
             
             
 
         private:
-            void isCaptainAlreadyAssigned(Character* captain) const;
+            
             int attackRange;
             int teamSize;
             int teamMaxSize;
 
+            
 
+        static std::vector<Team*> teams;
     };
 }
 
