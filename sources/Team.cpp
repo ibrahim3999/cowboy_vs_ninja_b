@@ -86,16 +86,15 @@ namespace ariel{
     }
 
     void Team::attack(Team* enemyTeam) {
-
         if (enemyTeam == nullptr) {
             throw std::invalid_argument("Null pointer to enemy team");
-        }else if(this==enemyTeam){
+        } if(this==enemyTeam){
             throw runtime_error("cant attack yourself ");
         }
-        else if (stillAlive()==0) {
+         if (stillAlive()==0) {
             throw std::runtime_error("The team is dead.");
         }
-        else if (enemyTeam->stillAlive() == 0) {
+         if (enemyTeam->stillAlive() == 0) {
             throw std::runtime_error("The attacking team has been defeated.");
         }
         
@@ -142,7 +141,6 @@ namespace ariel{
         //throw std::invalid_argument("Null pointer to enemy team");
         return;
         }
-
         // Attack the closest alive enemy
         for (Character* attacker : members) {
             if (attacker->isAlive() && closestEnemy->isAlive() ){
@@ -160,6 +158,7 @@ namespace ariel{
                 if( Ninja *ninja = dynamic_cast<Ninja*>(attacker)){
                 
                     if(ninja->distance(closestEnemy->getLocation())<1 && closestEnemy->isAlive()){
+                        
                         ninja->slash(closestEnemy);
                         }else{
                             ninja->move(closestEnemy);
@@ -199,6 +198,8 @@ namespace ariel{
             }
             
         }
+        
+        
     }
      
 

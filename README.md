@@ -1,155 +1,37 @@
-# cowboy_vs_ninja_a
+# Cowboy & Ninja Game
 
-בתרגיל זה ניצור סימולציה של קרב בין נינגות ובוקרים
+The Cowboy & Ninja Game is an exciting console-based game where players can engage in battles between two teams composed of Cowboys and Ninjas. The objective of the game is to strategically eliminate all the characters in the opposing team while keeping your own team alive.
 
-# חלק 1 Point
+## Gameplay
 
-תחילה, נכתוב מחלקה שתעזור לנו לשמור מיקום על לוח המשחק. המיקום נתון כשתי קורדינאטות מסוג double ששומרות
-את מיקום היחידה לאורך הצירים x ו - y בהתאם.
-על ממשק המחלקה לתמוך בפעולות הבאות:
+- Choose a team: Start by assembling your team of characters, which can include both Cowboys and Ninjas. Each team has a maximum size limit.
+- Battle Begins: Once the teams are formed, the battle begins! Take turns with the opposing team to make moves and attack.
+- Character Actions: Cowboys can shoot enemies with their pistols, while Ninjas can perform slashing attacks. Use different strategies to defeat the opposing team's characters.
+- Health Management: Keep an eye on your team's health and make decisions wisely. You can choose to attack, defend, or heal your team members depending on the situation.
+- Captain's Role: Each team is led by a captain character who plays a crucial role in leading the team and making strategic decisions during battles.
 
-קונסטרקטור מקבל את שתי הקואורדינאטות –
+## Classes
 
-מרחק distance
-מקבלת נקודה ומחשבת את המרחק בין שתי הנקודות –
+The game features two main classes of characters:
 
-הדפסה print
-מדפיסה את שתי הקואורדינטות בין סוגריים. -
+1. Cowboy: Skilled gunmen equipped with pistols. They have the ability to shoot enemies, but they need to manage their ammunition wisely.
 
-לזוז ל moveTowards
-מקבלת נקודת מקור, נקודת יעד ומרחק. הפונקציה מחזירה את הנקודה הקרובה ביותר לנקודת היעד, –
-שנמצאת כל היותר במרחק הנתון מנקודת המקור
+2. Ninja(youngNinja,...): Agile warriors specialized in close combat. They can move swiftly and perform powerful slashing attacks, but they have limited health.
 
-# חלק 2 Character
+## Getting Started
 
-מחלקה זו מציינת דמות. לדמות יש מיקום )מסוג Point (, נקודות פגיעה )מיוצג ע"י מספר שלם( ושם שמיוצג ע"י מחרוזת
-תווים.
-פונקציות המוגדרות על דמות:
+To start playing the Cowboy & Ninja Game, follow these steps:
 
-האם חייisAlive()
-מחזיר ערך בוליאני האם הדמות בחיים )כלומר יש לה יותר מאפס נקודות פגיעה( – –
+1. Clone the repository: `git clone <repository-url>`
+2. Compile the game: `make demo & ./demo`
 
-מרחק distance
-מקבל פוינטר לדמות אחרת ומחזיר את המרחק בין הדמויות ) – – double .)
+## Controls
 
- פגע hit
-מקבל מספר שלם. מחסיר את כמות נקודות הפגיעה המתאים מהדמות. לא מחזיר דבר. –
+- During the game, follow the on-screen prompts to make moves and perform actions.
+- Use the keyboard to input your commands and navigate through the game.
 
-שם getName()
-מחזיר את שם הדמות. -
+## Requirements
 
-מיקום getLocation()
-מחזיר את מיקום הדמות. -
+- C++ compiler
+- Git
 
-הדפסה print()
-מדפיס את שם הדמות, את מספר נקודות הפגיעה שלה, ואת הנקודה בה הדמות נמצאת. אם הדמות מתה מספר - -
-נקודות הפגיעה לא יודפס, ושם הדמות יופיע בסוגריים. לפני השם תופיע אות שמציינת את סוג הדמות: N לנינג'ה ו - C
-לבוקר.
-
-עבור בוקרים מוגדר גם הפרמטר "כמות כדורים" )מספר שלם( בוקר תמיד נוצר עם שישה כדורים ו 110 נקודות פגיעה. -
-הפונקציות הבאות מוגדרות עבור בוקרים בלבד:
-
-לירות shoot 
-מקבל מצביע לאוייב. אם הבוקר לא מת ונשארו לו כדורים, הבוקר יורה באויב, מחסיר מהאויב 10 נקודות פגיעה –
-ומאבד כדור אחד. אחרת, לא ייגרם לאויב כל נזק.
-
-בדיקת מחסנית hasboolets()
-מחזיר – Boolean שמציין האם נשארו כדורים באקדח של הבוקר.
-
-טעינה מחדש reload()
-טוען את האקדח בשישה כדורים חדשים.
-
-עבור נינג'ות מוגדר הפרמטר מהירות )מספר שלם(
-הפונקציות הבאותת מוגדרות עבור נינג'ות בלבד:
-
-תזוזה move 
-מקבלת מצביע לאוייב ומתקדמת לעבר האוייב. הנינג'ה מתקדמת מרחק השווה למהירות שלה. –
-
-שיסוף slash()
-– – מקבלת מצביע לאוייב. אם הנינג'ה בחיים והאוייב במרחק של פחות ממטר אחד הנינג'ה תגרום לאוייב נזק של 40
-נקודות פגיעה. אחרת, לא ייגרם לאוייב כל נזק.
-
-יש שלושה סוגים של נינג'ות:
-
-YoungNinja
-נעות במהירות 14 . נוצרות עם 100 נקודות פגיעה. –
-
-TrainedNinja
-נעות במהירות 12 . נוצרות עם 120 נקודות פגיעה. –
-
-OldNinja
-נעות במהירות 8. נוצרות עם 150 נקודות פגיעה.
-
-# חלק 3 team
-
-מחלקה זו היא קבוצה של עד עשרה לוחמים, כאשר לוחם יכול להיות נינג'ה או בוקר. לכל קבוצה מוגדר מנהיג שהוא אחד
-הלוחמים.
-כאשר קבוצה נוצרת, היא מקבלת מצביע למנהיג.
-פונקציות המוגדרות לגבי קבוצה:
-
-הוספה add() 
-מקבלת מצביע לבוקר או נינג'ה, ומוסיפה אותו לקבוצה. –
-
-תקיפה attack()
-מקבלת מצביע לקבוצה אויבת. תקיפת הקבוצה האויבת תיעשה בצורה הבאה: –
-תחילה יש לבדוק האם מנהיג הקבוצה התוקפת בחיים. אחרת יש לבחור מנהיג חדש, שהוא הדמות החיה הקרובה – –
-ביותר )מבחינת מיקום( למנהיג המת.
-אחר כך הקבוצה תיבחר קורבן מתוך קבוצת האויבים הקורבן הוא חבר קבוצת האויבים החי שעומד קרוב ביותר – – -
-למנהיג הקבוצה התוקפת.
-כל החברים החיים של הקבוצה התוקפת יתקפו את הקורבן הנבחר. בוקרים שיש להם כדורים באקדח יירו בקורבן,
-ובוקרים שאין להם כדורים יטענו את הנשק שלהם. נינג'ות שנמצאות במרחק פחות ממטר אחד מהקורבן ישספו את
-הקורבן, ונינג'ות שנמצאות רחוק יותר יתקדמו לעבר הקורבן. בכל שלב, אם הקורבן מת ייבחר קורבן חדש )שיהיה,
-שוב, דמות האויב החיה הקרובה ביותר למנהיג הקבוצה התוקפת.
-אם אין חברים חיים בקבוצה התוקפת או בקבוצת האויב התקיפה תסתיים. –
-
-האם חיי stillAlive()
-מחזירה מספר שלם כמות חברי הקבוצה שנותרו בחיים. – –
-
-הדפסה print()
-עוברת על כל הדמויות בקבוצה ומדפיסה את פרטיהן. –
-
-דיסטרקטור משחרר את הזכרון שהוקצה לכל הדמויות החברות בקבוצה. –
-
-
-מעבר על כל חברי הקבוצה (לצורך תקיפה, הדפסה, או השוואה) יתבצע תמיד בסדר הבא: קודם כל מעבר על כל הבוקרים,
-ואחר כך מעבר על כל הנינג'ות. בתוך כל קבוצה המעבר יתבצע על פי סדר ההוספה של הדמויות. מטרת הדרישה לפצל בין - -
-בוקרים לנינג'ות בחלק זה היא להקל עליכם. אם אתם מוצאים שהדרישה מסבכת את המימוש חשבו על מימוש אחר. –
-כאשר מחפשים את הדמות הקרובה ביותר, ושתי דמויות נמצאות במרחק זהה, תיבחר הדמות הראשונה שנבדקה ביניהן.
-
-# team2 
-
-זהה לteam אך המעבר על הדמויות יהיה לפי סדר ההוספה ללא אבחנה של בוקרים או נינגות
-
-# SmartTeam
-
-זהה לteam המעבר על הדמויות יהיה לפי בחירתכם לפי איזה סדר שתראו לנכון לממש
-מותר ורצוי בשלב זה "לתשאל" את הקבוצה השניה על מיקומי הכוחות והסטאטוס שלהם כמו גם להתחשב במצב הקבוצה התוקפת כדי למקסם נזק. 
-כאשר מטלה זו תיבדק במעבדה סטודנטים עם אלגוריתם חכם, יצירתי, יעיל ואפקטיבי יזכו בנקודות בונוס 
-(אי אפשר לעבור את ה10 מקסימום ועדין ניתן לקבל 10 עם אלגוריתם פשוט אבל אלגוריתם טוב יכפה על טעויות במקומות אחרים) 
-
-
-
-**חלק ב**: יש לכתוב: 
-
-*מימוש מלא למטלה כדי שהטסט יעבור.
-  
-כיתבו את כל הקבצים הדרושים כך שהפקודות הבאות יעבדו ללא שגיאות:
-
-<div dir='ltr'>
-
-	bash grade
-
-</div>
-
-מומלץ גם להריץ:
-
-<div dir='ltr'>
-
-    make tidy
-    make valgrind
-
-</div>
-
-אין לשנות קבצים קיימים אלא רק להוסיף קבצים חדשים.
-
-בהצלחה
