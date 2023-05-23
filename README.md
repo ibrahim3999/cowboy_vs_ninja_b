@@ -1,3 +1,4 @@
+
 # Cowboy & Ninja Game
 
 The Cowboy & Ninja Game is an exciting console-based game where players can engage in battles between two teams composed of Cowboys and Ninjas. The objective of the game is to strategically eliminate all the characters in the opposing team while keeping your own team alive.
@@ -38,3 +39,5 @@ To start playing the Cowboy & Ninja Game, follow these steps:
 - C++ compiler
 - Git
 
+
+![image](https://github.com/ibrahim3999/cowboy_vs_ninja_b/assets/48316131/97a91852-e815-40d6-88d4-447287c7a234)
