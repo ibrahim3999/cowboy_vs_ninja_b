@@ -17,6 +17,9 @@ The game features two main classes of characters:
 1. Cowboy: Skilled gunmen equipped with pistols. They have the ability to shoot enemies, but they need to manage their ammunition wisely.
 
 2. Ninja(youngNinja,...): Agile warriors specialized in close combat. They can move swiftly and perform powerful slashing attacks, but they have limited health.
+3. team
+4. team2
+5. smartTeam
 
 ## Getting Started
 
