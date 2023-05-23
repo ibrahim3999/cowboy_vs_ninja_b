@@ -77,7 +77,7 @@ namespace ariel{
                 break;
          }
       }
-   }
+    }
 
     void Team::print() {
         for (Character* character : members) {
@@ -90,14 +90,13 @@ namespace ariel{
             throw std::invalid_argument("Null pointer to enemy team");
         } if(this==enemyTeam){
             throw runtime_error("cant attack yourself ");
-        }
-         if (stillAlive()==0) {
-            throw std::runtime_error("The team is dead.");
-        }
-         if (enemyTeam->stillAlive() == 0) {
+        }if (enemyTeam->stillAlive() == 0) {
             throw std::runtime_error("The attacking team has been defeated.");
         }
-        
+        if (stillAlive()==0) {
+            throw std::runtime_error("The team is dead.");
+        }
+         
         Character* closestEnemy = nullptr;
 
         if(!this->captain->isAlive()){
@@ -120,7 +119,6 @@ namespace ariel{
                 return;
             }
         }
-        
         if(closestEnemy==nullptr || !closestEnemy->isAlive())
         {
             // Find the closest alive enemy to the attacking captian
@@ -144,13 +142,13 @@ namespace ariel{
         // Attack the closest alive enemy
         for (Character* attacker : members) {
             if (attacker->isAlive() && closestEnemy->isAlive() ){
-
+                
                 if ( Cowboy* cowboy = dynamic_cast<Cowboy*>(attacker)) {
                     
                     if (cowboy->hasboolets()) {
                             // Shoot the enemy
                             cowboy->shoot(closestEnemy);
-                    } else if( !cowboy->hasboolets() ){
+                    }else if( !cowboy->hasboolets() ){
                         // Reload weapon
                         cowboy->reload();
                     }    
@@ -158,7 +156,6 @@ namespace ariel{
                 if( Ninja *ninja = dynamic_cast<Ninja*>(attacker)){
                 
                     if(ninja->distance(closestEnemy->getLocation())<1 && closestEnemy->isAlive()){
-                        
                         ninja->slash(closestEnemy);
                         }else{
                             ninja->move(closestEnemy);
@@ -175,7 +172,6 @@ namespace ariel{
                         if (distance < minDistance) {
                             minDistance = distance;
                             closest = enemy;
-
                             enemyTeam->setCaptain(closest); 
                         }
                     }
@@ -198,6 +194,7 @@ namespace ariel{
             }
             
         }
+      
         
         
     }
