@@ -29,11 +29,6 @@ To start playing the Cowboy & Ninja Game, follow these steps:
 1. Clone the repository: `git clone <repository-url>`
 2. Compile the game: `make demo & ./demo`
 
-## Controls
-
-- During the game, follow the on-screen prompts to make moves and perform actions.
-- Use the keyboard to input your commands and navigate through the game.
-
 ## Requirements
 
 - C++ compiler
